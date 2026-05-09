@@ -1,0 +1,221 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  CUSTOMER
+  ADMIN
+}
+
+enum OrderStatus {
+  PENDING_CONFIRMATION
+  CONFIRMED
+  SHIPPING
+  DELIVERED
+  CANCELLED
+  RETURNED
+}
+
+model User {
+  id            String     @id @default(cuid())
+  name          String?
+  email         String     @unique
+  emailVerified DateTime?
+  passwordHash  String?
+  phone         String?
+  role          Role       @default(CUSTOMER)
+  image         String?
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+  accounts      Account[]
+  sessions      Session[]
+  customer      Customer?
+  orders        Order[]
+  wishlist      Wishlist[]
+  reviews       Review[]
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model Wishlist {
+  id        String   @id @default(cuid())
+  userId    String
+  productId String
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product   Product  @relation(fields: [productId], references: [id])
+
+  @@unique([userId, productId])
+}
+
+model Review {
+  id        String   @id @default(cuid())
+  userId    String
+  productId String
+  rating    Int
+  comment   String?
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product   Product  @relation(fields: [productId], references: [id])
+}
+
+model PromoCode {
+  id              String    @id @default(cuid())
+  code            String    @unique
+  discountPercent Int
+  maxUses         Int       @default(100)
+  usedCount       Int       @default(0)
+  expiresAt       DateTime?
+  isActive        Boolean   @default(true)
+  createdAt       DateTime  @default(now())
+}
+
+model Customer {
+  id        String    @id @default(cuid())
+  userId    String    @unique
+  firstName String
+  lastName  String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  user      User      @relation(fields: [userId], references: [id])
+  addresses Address[]
+  orders    Order[]
+}
+
+model Address {
+  id         String   @id @default(cuid())
+  customerId String
+  wilaya     String
+  commune    String
+  specifics  String
+  isPrimary  Boolean  @default(true)
+  customer   Customer @relation(fields: [customerId], references: [id])
+}
+
+model Category {
+  id        String     @id @default(cuid())
+  name_en   String
+  name_ar   String
+  name_fr   String
+  slug      String     @unique
+  parentId  String?
+  parent    Category?  @relation("SubCategories", fields: [parentId], references: [id])
+  children  Category[] @relation("SubCategories")
+  products  Product[]
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+}
+
+model Product {
+  id         String      @id @default(cuid())
+  name_en    String
+  name_ar    String
+  name_fr    String
+  desc_en    String      @db.Text
+  desc_ar    String      @db.Text
+  desc_fr    String      @db.Text
+  slug       String      @unique
+  basePrice  Decimal
+  salePrice  Decimal?
+  mainImage  String
+  images     String[]
+  stock      Int         @default(0)
+  isFeatured Boolean     @default(false)
+  categoryId String
+  category   Category    @relation(fields: [categoryId], references: [id])
+  variants   Variant[]
+  orderItems OrderItem[]
+  wishlists  Wishlist[]
+  reviews    Review[]
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+}
+
+model Variant {
+  id        String   @id @default(cuid())
+  productId String
+  product   Product  @relation(fields: [productId], references: [id])
+  sku       String   @unique
+  color     String?
+  size      String?
+  price     Decimal?
+  stock     Int      @default(0)
+  images    String[]
+}
+
+model Order {
+  id             String      @id @default(cuid())
+  customerId     String
+  userId         String?
+  status         OrderStatus @default(PENDING_CONFIRMATION)
+  totalAmount    Decimal
+  shippingCost   Decimal
+  paymentMethod  String      @default("COD")
+  wilaya         String
+  commune        String
+  addressDetails String
+  customerPhone  String
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+  customer       Customer    @relation(fields: [customerId], references: [id])
+  user           User?       @relation(fields: [userId], references: [id])
+  items          OrderItem[]
+}
+
+model OrderItem {
+  id        String   @id @default(cuid())
+  orderId   String
+  productId String
+  variantId String?
+  quantity  Int
+  price     Decimal
+  order     Order    @relation(fields: [orderId], references: [id])
+  product   Product  @relation(fields: [productId], references: [id])
+}
+
+model HomepageSection {
+  id        String  @id @default(cuid())
+  type      String
+  title_en  String?
+  title_ar  String?
+  title_fr  String?
+  content   Json
+  order     Int     @default(0)
+  active    Boolean @default(true)
+}
