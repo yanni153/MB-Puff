@@ -4,7 +4,7 @@ import { Phone } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export default function WhatsAppButton() {
-    const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '213770000000';
+    const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '213794662117';
     
     return (
         <>

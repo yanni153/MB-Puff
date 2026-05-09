@@ -164,13 +164,6 @@ export async function createOrder(data: OrderInput) {
         },
       });
 
-      for (const item of data.items) {
-        await tx.product.update({
-          where: { id: item.productId },
-          data: { stock: { decrement: item.quantity } },
-        });
-      }
-
       return createdOrder;
     });
 
@@ -179,6 +172,57 @@ export async function createOrder(data: OrderInput) {
   } catch (error) {
     console.error('Failed to create order:', error);
     return { success: false, error: 'Failed to create order' };
+  }
+}
+
+export async function updateOrderStatus(orderId: string, nextStatus: string) {
+  try {
+    await requireAdmin();
+    const order = await prisma.order.findUnique({
+      where: { id: orderId },
+      include: { items: true },
+    });
+
+    if (!order) return { success: false, error: 'Order not found' };
+
+    const prevStatus = order.status;
+    
+    // Logic: Stock is only "taken off" when status becomes CONFIRMED or SHIPPING.
+    // Logic: Stock is "returned" if it was already taken off but now cancelled/returned.
+    
+    const wasDeducted = ['CONFIRMED', 'SHIPPING', 'DELIVERED'].includes(prevStatus);
+    const shouldBeDeducted = ['CONFIRMED', 'SHIPPING', 'DELIVERED'].includes(nextStatus);
+
+    await prisma.$transaction(async (tx) => {
+      await tx.order.update({
+        where: { id: orderId },
+        data: { status: nextStatus as any },
+      });
+
+      if (!wasDeducted && shouldBeDeducted) {
+        // Take off from items
+        for (const item of order.items) {
+          await tx.product.update({
+            where: { id: item.productId },
+            data: { stock: { decrement: item.quantity } },
+          });
+        }
+      } else if (wasDeducted && !shouldBeDeducted && (nextStatus === 'CANCELLED' || nextStatus === 'RETURNED')) {
+        // Back to items
+        for (const item of order.items) {
+          await tx.product.update({
+            where: { id: item.productId },
+            data: { stock: { increment: item.quantity } },
+          });
+        }
+      }
+    });
+
+    revalidatePath('/[locale]/admin/orders', 'page');
+    return { success: true };
+  } catch (error) {
+    console.error('Failed to update order status:', error);
+    return { success: false, error: 'Failed to update order status' };
   }
 }
 
