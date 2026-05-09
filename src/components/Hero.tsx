@@ -16,7 +16,7 @@ export default function Hero() {
       alignItems: 'center',
       overflow: 'hidden',
       borderBottom: '1px solid var(--border)',
-      backgroundImage: 'linear-gradient(90deg, rgba(8,8,16,0.96), rgba(8,8,16,0.55)), url(/hero-bg.jpg)',
+      backgroundImage: 'linear-gradient(90deg, rgba(8,8,16,0.96), rgba(8,8,16,0.55)), url(/hero-bg.png)',
       backgroundSize: 'cover',
       backgroundPosition: 'center',
     }}>
