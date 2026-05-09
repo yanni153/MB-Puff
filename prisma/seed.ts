@@ -165,7 +165,7 @@ async function main() {
   await prisma.session.deleteMany();
   await prisma.user.deleteMany();
 
-  const adminPassword = await bcrypt.hash('Admin1234!', 10);
+  const adminPassword = await bcrypt.hash('Mohamed@147*258*369', 10);
   await prisma.user.create({
     data: {
       email: 'admin@mbpuff.dz',

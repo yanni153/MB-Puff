@@ -186,32 +186,7 @@ export default function LoginPage() {
                     </motion.button>
                 </form>
 
-                <div style={{ margin: 'var(--space-xl) 0', display: 'flex', alignItems: 'center', gap: '10px' }}>
-                    <div style={{ flex: 1, height: '1px', background: 'rgba(255,255,255,0.1)' }} />
-                    <span style={{ fontSize: '12px', color: 'var(--text-muted)', fontWeight: 600 }}>{t('orContinue')}</span>
-                    <div style={{ flex: 1, height: '1px', background: 'rgba(255,255,255,0.1)' }} />
-                </div>
-
-                <motion.button 
-                    onClick={handleGoogleSignIn}
-                    whileHover={{ background: 'rgba(255,255,255,0.05)' }}
-                    style={{ 
-                        width: '100%',
-                        background: 'transparent', 
-                        color: 'white', 
-                        padding: '14px', 
-                        borderRadius: 'var(--radius-md)', 
-                        fontWeight: 600, 
-                        fontSize: '14px',
-                        border: '1px solid rgba(255,255,255,0.1)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        gap: '12px'
-                    }}
-                >
-                    <Globe size={20} /> Google
-                </motion.button>
+                </form>
 
                 <div style={{ textAlign: 'center', marginTop: 'var(--space-xl)', fontSize: '14px' }}>
                     <span style={{ color: 'var(--text-muted)' }}>{t('noAccount')} </span>
