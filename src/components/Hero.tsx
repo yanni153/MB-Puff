@@ -51,14 +51,43 @@ export default function Hero() {
 
           <motion.div
             className="desktop-only"
-            animate={{ y: [0, -12, 0] }}
-            transition={{ repeat: Infinity, duration: 4, ease: 'easeInOut' }}
-            style={{ height: 420, borderRadius: 38, border: '1px solid var(--border-glow)', background: 'linear-gradient(180deg, rgba(24,24,42,0.9), rgba(16,16,26,0.35))', boxShadow: 'var(--shadow-primary)', display: 'grid', placeItems: 'center', position: 'relative', zIndex: 2 }}
+            animate={{ 
+              y: [0, -20, 0],
+              rotate: [0, 1, -1, 0]
+            }}
+            transition={{ 
+              repeat: Infinity, 
+              duration: 6, 
+              ease: 'easeInOut' 
+            }}
+            style={{ 
+              position: 'relative', 
+              zIndex: 2,
+              filter: 'drop-shadow(0 0 30px rgba(191,95,255,0.3))'
+            }}
           >
-            <div style={{ width: 94, height: 330, borderRadius: 48, background: 'linear-gradient(180deg, #2a2a3f, #090910)', border: '2px solid var(--primary)', boxShadow: '0 0 42px rgba(191,95,255,0.35)', position: 'relative' }}>
-              <div style={{ position: 'absolute', top: 34, left: '50%', transform: 'translateX(-50%)', width: 44, height: 44, borderRadius: '50%', background: 'var(--secondary)', boxShadow: '0 0 28px rgba(0,229,255,0.45)' }} />
-              <div style={{ position: 'absolute', bottom: 70, left: 18, right: 18, textAlign: 'center', fontFamily: 'Orbitron', fontWeight: 900, color: 'var(--accent-silver)' }}>MB<br />PUFF</div>
-            </div>
+            <motion.div
+              animate={{ opacity: [0.4, 0.8, 0.4] }}
+              transition={{ repeat: Infinity, duration: 3 }}
+              style={{
+                position: 'absolute',
+                inset: '-20px',
+                background: 'radial-gradient(circle, rgba(191,95,255,0.2) 0%, transparent 70%)',
+                filter: 'blur(30px)',
+                zIndex: -1
+              }}
+            />
+            <img 
+              src="/hero-device.png" 
+              alt="MB PUFF Device" 
+              style={{ 
+                height: 480, 
+                width: 'auto', 
+                objectFit: 'contain',
+                maskImage: 'linear-gradient(to bottom, black 85%, transparent 100%)',
+                WebkitMaskImage: 'linear-gradient(to bottom, black 85%, transparent 100%)'
+              }} 
+            />
           </motion.div>
         </div>
       </div>
