@@ -186,8 +186,6 @@ export default function LoginPage() {
                     </motion.button>
                 </form>
 
-                </form>
-
                 <div style={{ textAlign: 'center', marginTop: 'var(--space-xl)', fontSize: '14px' }}>
                     <span style={{ color: 'var(--text-muted)' }}>{t('noAccount')} </span>
                     <Link href={`/${locale}/register`} style={{ color: 'var(--primary)', fontWeight: 700 }}>

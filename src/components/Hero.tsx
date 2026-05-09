@@ -16,13 +16,13 @@ export default function Hero() {
       alignItems: 'center',
       overflow: 'hidden',
       borderBottom: '1px solid var(--border)',
-      backgroundImage: 'linear-gradient(90deg, rgba(8,8,16,0.96), rgba(8,8,16,0.55)), url(/e_commerce_hero_bg_1777151113801.png)',
+      backgroundImage: 'linear-gradient(90deg, rgba(8,8,16,0.96), rgba(8,8,16,0.55)), url(/hero-bg.jpg)',
       backgroundSize: 'cover',
       backgroundPosition: 'center',
     }}>
       <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle at 72% 38%, rgba(191,95,255,0.28), transparent 34%), radial-gradient(circle at 82% 68%, rgba(0,229,255,0.18), transparent 28%)' }} />
 
-      <div className="container" style={{ position: 'relative', zIndex: 1, display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) 360px', gap: 'var(--space-2xl)', alignItems: 'center' }}>
+      <div className="container hero-grid" style={{ position: 'relative', zIndex: 1, display: 'grid', alignItems: 'center' }}>
         <div>
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} style={{ color: 'var(--secondary)', fontWeight: 900, letterSpacing: 2, textTransform: 'uppercase', marginBottom: 'var(--space-md)' }}>
             {t('eyebrow')}
