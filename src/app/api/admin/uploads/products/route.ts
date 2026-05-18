@@ -1,6 +1,4 @@
-import { randomUUID } from 'crypto';
-import { mkdir, writeFile } from 'fs/promises';
-import path from 'path';
+import { put } from '@vercel/blob';
 import { auth } from '@/lib/auth';
 
 const MAX_FILE_SIZE = 8 * 1024 * 1024;
@@ -24,9 +22,6 @@ export async function POST(request: Request) {
     return Response.json({ error: 'No files uploaded' }, { status: 400 });
   }
 
-  const uploadDir = path.join(process.cwd(), 'public', 'uploads', 'products');
-  await mkdir(uploadDir, { recursive: true });
-
   const urls: string[] = [];
 
   for (const file of files) {
@@ -39,12 +34,14 @@ export async function POST(request: Request) {
       return Response.json({ error: 'Each image must be 8MB or smaller' }, { status: 400 });
     }
 
-    const filename = `${Date.now()}-${randomUUID()}.${extension}`;
-    const destination = path.join(uploadDir, filename);
-    const bytes = Buffer.from(await file.arrayBuffer());
+    const filename = `${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.\-_]/g, '')}`;
+    
+    // Upload to Vercel Blob
+    const blob = await put(`products/${filename}`, file, {
+      access: 'public',
+    });
 
-    await writeFile(destination, bytes);
-    urls.push(`/uploads/products/${filename}`);
+    urls.push(blob.url);
   }
 
   return Response.json({ urls });
