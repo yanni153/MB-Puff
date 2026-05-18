@@ -9,11 +9,12 @@ export default async function ProductPage({
   params: Promise<{ locale: string; slug: string }>
 }) {
   const { slug } = await params;
+  const decodedSlug = decodeURIComponent(slug);
 
   let productRaw = null;
   try {
     productRaw = await prisma.product.findUnique({
-      where: { slug },
+      where: { slug: decodedSlug },
       include: { category: true }
     });
   } catch {
