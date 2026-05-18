@@ -27,7 +27,8 @@ export default function ProductCreateForm({ categories }: { categories: Category
         categoryId: categories[0]?.id || '',
         stock: '0',
     });
-    const [flavorsInput, setFlavorsInput] = useState('');
+    const [flavors, setFlavors] = useState<string[]>([]);
+    const [currentFlavor, setCurrentFlavor] = useState('');
 
     const slugify = (text: string) => {
         return text.toString().toLowerCase()
@@ -44,8 +45,6 @@ export default function ProductCreateForm({ categories }: { categories: Category
             alert('Please upload at least one product image');
             return;
         }
-
-        const flavors = flavorsInput.split(',').map(f => f.trim()).filter(f => f.length > 0);
 
         const result = await createProduct({
             ...formData,
@@ -86,8 +85,120 @@ export default function ProductCreateForm({ categories }: { categories: Category
                     <input type="text" value={formData.slug} onChange={e => setFormData({...formData, slug: slugify(e.target.value)})} required style={{ width: '100%', padding: 'var(--space-sm)' }} />
                 </div>
                 <div style={{ gridColumn: 'span 2' }}>
-                    <label>Flavors (Comma Separated)</label>
-                    <input type="text" value={flavorsInput} onChange={e => setFlavorsInput(e.target.value)} placeholder="e.g. Peach Berry, Mint, Double Apple" style={{ width: '100%', padding: 'var(--space-sm)' }} />
+                    <label style={{ display: 'block', marginBottom: 6 }}>Flavors (Optional)</label>
+                    <div style={{ display: 'flex', gap: 10, marginBottom: 10 }}>
+                        <input 
+                            type="text" 
+                            value={currentFlavor} 
+                            onChange={e => setCurrentFlavor(e.target.value)} 
+                            onKeyDown={e => {
+                                if (e.key === 'Enter') {
+                                    e.preventDefault();
+                                    if (currentFlavor.trim()) {
+                                        if (!flavors.includes(currentFlavor.trim())) {
+                                            setFlavors([...flavors, currentFlavor.trim()]);
+                                        }
+                                        setCurrentFlavor('');
+                                    }
+                                }
+                            }}
+                            placeholder="Type a flavor and click + or press Enter" 
+                            style={{ flex: 1, padding: 'var(--space-sm)' }} 
+                        />
+                        <button 
+                            type="button" 
+                            onClick={() => {
+                                if (currentFlavor.trim()) {
+                                    if (!flavors.includes(currentFlavor.trim())) {
+                                        setFlavors([...flavors, currentFlavor.trim()]);
+                                    }
+                                    setCurrentFlavor('');
+                                }
+                            }}
+                            style={{ 
+                                padding: '0 20px', 
+                                background: 'var(--primary)', 
+                                color: '#080810', 
+                                border: 'none', 
+                                borderRadius: 'var(--radius-md)', 
+                                fontWeight: 800,
+                                fontSize: 20,
+                                cursor: 'pointer'
+                            }}
+                        >
+                            +
+                        </button>
+                    </div>
+
+                    {/* Active Flavors Tags */}
+                    {flavors.length > 0 && (
+                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 12 }}>
+                            {flavors.map(flavor => (
+                                <span 
+                                    key={flavor} 
+                                    style={{ 
+                                        display: 'inline-flex', 
+                                        alignItems: 'center', 
+                                        gap: 6, 
+                                        padding: '5px 12px', 
+                                        background: 'rgba(191, 95, 255, 0.15)', 
+                                        border: '1px solid var(--primary)', 
+                                        borderRadius: '99px', 
+                                        color: 'var(--primary)', 
+                                        fontSize: 13,
+                                        fontWeight: 600
+                                    }}
+                                >
+                                    {flavor}
+                                    <button 
+                                        type="button" 
+                                        onClick={() => setFlavors(flavors.filter(f => f !== flavor))}
+                                        style={{ 
+                                            background: 'none', 
+                                            border: 'none', 
+                                            color: 'var(--primary)', 
+                                            cursor: 'pointer', 
+                                            fontSize: 14,
+                                            fontWeight: 800,
+                                            padding: '0 2px'
+                                        }}
+                                    >
+                                        ×
+                                    </button>
+                                </span>
+                            ))}
+                        </div>
+                    )}
+
+                    {/* Quick Add Popular Flavors */}
+                    <div style={{ fontSize: 12, color: 'var(--text-hint)' }}>
+                        <span style={{ marginRight: 6 }}>Quick Add:</span>
+                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginTop: 4 }}>
+                            {['Lush Ice', 'Blueberry Lemonade', 'Peach Berry', 'Mango Pineapple', 'Strawberry Kiwi', 'Watermelon Lime', 'Mint', 'Pineapple Ice', 'Double Apple'].map(popular => {
+                                const isAdded = flavors.includes(popular);
+                                return (
+                                    <button
+                                        key={popular}
+                                        type="button"
+                                        disabled={isAdded}
+                                        onClick={() => setFlavors([...flavors, popular])}
+                                        style={{
+                                            padding: '4px 10px',
+                                            borderRadius: '99px',
+                                            border: '1px solid var(--border)',
+                                            background: isAdded ? 'var(--bg-hover)' : 'var(--bg-elevated)',
+                                            color: isAdded ? 'var(--text-hint)' : 'var(--text-muted)',
+                                            fontSize: 11,
+                                            cursor: isAdded ? 'not-allowed' : 'pointer',
+                                            transition: 'all 0.15s ease'
+                                        }}
+                                    >
+                                        + {popular}
+                                    </button>
+                                );
+                            })}
+                        </div>
+                    </div>
                 </div>
             </div>
 
