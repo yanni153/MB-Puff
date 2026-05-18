@@ -12,6 +12,7 @@ export type CartProduct = {
   basePrice: number | string;
   salePrice?: number | string | null;
   stock?: number;
+  flavor?: string;
 };
 
 export type CartItem = CartProduct & {
@@ -23,8 +24,8 @@ type CartContextValue = {
   count: number;
   subtotal: number;
   addItem: (product: CartProduct, quantity?: number) => void;
-  updateQuantity: (productId: string, quantity: number) => void;
-  removeItem: (productId: string) => void;
+  updateQuantity: (productId: string, flavor: string | undefined, quantity: number) => void;
+  removeItem: (productId: string, flavor: string | undefined) => void;
   clearCart: () => void;
 };
 
@@ -58,10 +59,10 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   const addItem = useCallback((product: CartProduct, quantity = 1) => {
     setItems((current) => {
-      const existing = current.find((item) => item.id === product.id);
+      const existing = current.find((item) => item.id === product.id && item.flavor === product.flavor);
       if (existing) {
         return current.map((item) =>
-          item.id === product.id
+          item.id === product.id && item.flavor === product.flavor
             ? { ...item, quantity: Math.max(1, item.quantity + quantity) }
             : item,
         );
@@ -70,16 +71,16 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     });
   }, []);
 
-  const updateQuantity = useCallback((productId: string, quantity: number) => {
+  const updateQuantity = useCallback((productId: string, flavor: string | undefined, quantity: number) => {
     setItems((current) =>
       current
-        .map((item) => (item.id === productId ? { ...item, quantity } : item))
+        .map((item) => (item.id === productId && item.flavor === flavor ? { ...item, quantity } : item))
         .filter((item) => item.quantity > 0),
     );
   }, []);
 
-  const removeItem = useCallback((productId: string) => {
-    setItems((current) => current.filter((item) => item.id !== productId));
+  const removeItem = useCallback((productId: string, flavor: string | undefined) => {
+    setItems((current) => current.filter((item) => !(item.id === productId && item.flavor === flavor)));
   }, []);
 
   const clearCart = useCallback(() => setItems([]), []);

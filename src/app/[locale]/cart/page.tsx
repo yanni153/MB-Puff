@@ -39,21 +39,22 @@ export default function CartPage() {
             const name = (item as any)[`name_${locale}`] || item.name_en;
             const price = Number(item.salePrice ?? item.basePrice);
             return (
-              <article key={item.id} style={{ display: 'grid', gridTemplateColumns: '96px 1fr auto', gap: 'var(--space-md)', alignItems: 'center', background: 'var(--bg-surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-lg)', padding: 'var(--space-md)' }}>
+              <article key={`${item.id}-${item.flavor || ''}`} style={{ display: 'grid', gridTemplateColumns: '96px 1fr auto', gap: 'var(--space-md)', alignItems: 'center', background: 'var(--bg-surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-lg)', padding: 'var(--space-md)' }}>
                 <img src={item.mainImage} alt={name} style={{ width: 96, height: 96, objectFit: 'cover', borderRadius: 'var(--radius-md)' }} />
                 <div>
                   <Link href={`/${locale}/product/${item.slug}`} style={{ fontWeight: 800 }}>{name}</Link>
+                  {item.flavor && <div style={{ color: 'var(--text-hint)', fontSize: 13, marginTop: 4 }}>Flavor: {item.flavor}</div>}
                   <div style={{ color: 'var(--secondary)', marginTop: 6 }}>{formatPrice(price)}</div>
-                  <button type="button" onClick={() => removeItem(item.id)} style={{ color: 'var(--error)', gap: 6, minHeight: 34, marginTop: 8 }}>
+                  <button type="button" onClick={() => removeItem(item.id, item.flavor)} style={{ color: 'var(--error)', gap: 6, minHeight: 34, marginTop: 8 }}>
                     <Trash2 size={16} /> Remove
                   </button>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                  <button type="button" onClick={() => updateQuantity(item.id, item.quantity - 1)} style={{ width: 34, minHeight: 34, borderRadius: '50%', background: 'var(--bg-elevated)', color: 'var(--text-main)' }}>
+                  <button type="button" onClick={() => updateQuantity(item.id, item.flavor, item.quantity - 1)} style={{ width: 34, minHeight: 34, borderRadius: '50%', background: 'var(--bg-elevated)', color: 'var(--text-main)' }}>
                     <Minus size={16} />
                   </button>
                   <strong>{item.quantity}</strong>
-                  <button type="button" onClick={() => updateQuantity(item.id, item.quantity + 1)} style={{ width: 34, minHeight: 34, borderRadius: '50%', background: 'var(--bg-elevated)', color: 'var(--text-main)' }}>
+                  <button type="button" onClick={() => updateQuantity(item.id, item.flavor, item.quantity + 1)} style={{ width: 34, minHeight: 34, borderRadius: '50%', background: 'var(--bg-elevated)', color: 'var(--text-main)' }}>
                     <Plus size={16} />
                   </button>
                 </div>

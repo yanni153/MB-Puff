@@ -53,7 +53,7 @@ export default function CheckoutPage() {
     startTransition(async () => {
       const result = await createOrder({
         ...form,
-        items: items.map((item) => ({ productId: item.id, quantity: item.quantity })),
+        items: items.map((item) => ({ productId: item.id, quantity: item.quantity, flavor: item.flavor || undefined })),
       });
 
       if (result.success && result.orderId) {
@@ -125,8 +125,11 @@ export default function CheckoutPage() {
         <aside className="sticky-panel" style={{ background: 'var(--bg-surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-lg)', padding: 'var(--space-xl)' }}>
           <h2 style={{ fontSize: 20, marginBottom: 'var(--space-lg)' }}>{t('summary')}</h2>
           {items.map((item) => (
-            <div key={item.id} style={{ display: 'flex', justifyContent: 'space-between', gap: 12, marginBottom: 12, color: 'var(--text-muted)' }}>
-              <span>{item.name_en} x {item.quantity}</span>
+            <div key={`${item.id}-${item.flavor || ''}`} style={{ display: 'flex', justifyContent: 'space-between', gap: 12, marginBottom: 12, color: 'var(--text-muted)' }}>
+              <div>
+                <span>{item.name_en} x {item.quantity}</span>
+                {item.flavor && <div style={{ fontSize: 12, color: 'var(--text-hint)' }}>Flavor: {item.flavor}</div>}
+              </div>
               <span>{formatPrice(Number(item.salePrice ?? item.basePrice) * item.quantity)}</span>
             </div>
           ))}

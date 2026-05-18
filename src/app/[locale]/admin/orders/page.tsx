@@ -43,6 +43,7 @@ export default async function AdminOrdersPage() {
                   {order.items.map(item => (
                     <div key={item.id} style={{ fontSize: 12 }}>
                       {item.quantity}x {item.product.name_en}
+                      {item.flavor && <span style={{ color: 'var(--text-hint)' }}> (Flavor: {item.flavor})</span>}
                     </div>
                   ))}
                 </td>

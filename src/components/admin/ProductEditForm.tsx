@@ -24,7 +24,17 @@ export default function ProductEditForm({ product, categories }: { product: any,
         stock: product.stock.toString(),
     });
 
+    const [flavorsInput, setFlavorsInput] = useState((product.flavors || []).join(', '));
     const [isSubmitting, setIsSubmitting] = useState(false);
+
+    const slugify = (text: string) => {
+        return text.toString().toLowerCase()
+            .replace(/\s+/g, '-')
+            .replace(/[^\w\-]+/g, '')
+            .replace(/\-\-+/g, '-')
+            .replace(/^-+/, '')
+            .replace(/-+$/, '');
+    };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -34,12 +44,15 @@ export default function ProductEditForm({ product, categories }: { product: any,
         }
 
         setIsSubmitting(true);
+        const flavors = flavorsInput.split(',').map((f: string) => f.trim()).filter((f: string) => f.length > 0);
+        
         const result = await updateProduct(product.id, {
             ...formData,
             mainImage: formData.images[0],
             basePrice: parseFloat(formData.basePrice),
             salePrice: formData.salePrice ? parseFloat(formData.salePrice) : null,
-            stock: parseInt(formData.stock)
+            stock: parseInt(formData.stock),
+            flavors
         });
         
         if (result.success) {
@@ -56,7 +69,7 @@ export default function ProductEditForm({ product, categories }: { product: any,
             <div className="form-three-column">
                 <div>
                     <label>Name (EN)</label>
-                    <input type="text" value={formData.name_en} onChange={e => setFormData({...formData, name_en: e.target.value})} required style={{ width: '100%', padding: 'var(--space-sm)' }} />
+                    <input type="text" value={formData.name_en} onChange={e => setFormData({...formData, name_en: e.target.value, slug: formData.slug ? formData.slug : slugify(e.target.value)})} required style={{ width: '100%', padding: 'var(--space-sm)' }} />
                 </div>
                 <div>
                     <label>Name (AR)</label>
@@ -68,9 +81,15 @@ export default function ProductEditForm({ product, categories }: { product: any,
                 </div>
             </div>
 
-            <div>
-                <label>Slug</label>
-                <input type="text" value={formData.slug} onChange={e => setFormData({...formData, slug: e.target.value})} required style={{ width: '100%', padding: 'var(--space-sm)' }} />
+            <div className="form-three-column">
+                <div>
+                    <label>Slug</label>
+                    <input type="text" value={formData.slug} onChange={e => setFormData({...formData, slug: slugify(e.target.value)})} required style={{ width: '100%', padding: 'var(--space-sm)' }} />
+                </div>
+                <div style={{ gridColumn: 'span 2' }}>
+                    <label>Flavors (Comma Separated)</label>
+                    <input type="text" value={flavorsInput} onChange={e => setFlavorsInput(e.target.value)} placeholder="e.g. Peach Berry, Mint, Double Apple" style={{ width: '100%', padding: 'var(--space-sm)' }} />
+                </div>
             </div>
 
             <div>

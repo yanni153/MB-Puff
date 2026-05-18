@@ -155,6 +155,7 @@ model Product {
   salePrice  Decimal?
   mainImage  String
   images     String[]
+  flavors    String[]    @default([])
   stock      Int         @default(0)
   isFeatured Boolean     @default(false)
   categoryId String
@@ -203,6 +204,7 @@ model OrderItem {
   orderId   String
   productId String
   variantId String?
+  flavor    String?
   quantity  Int
   price     Decimal
   order     Order    @relation(fields: [orderId], references: [id])

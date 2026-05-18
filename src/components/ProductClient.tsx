@@ -22,6 +22,7 @@ export default function ProductClient({ product }: ProductClientProps) {
   const { isWishlisted, toggleWishlist } = useWishlist();
   const gallery = useMemo(() => [product.mainImage, ...(product.images || [])].filter(Boolean).slice(0, 4), [product]);
   const [activeImage, setActiveImage] = useState(gallery[0]);
+  const [selectedFlavor, setSelectedFlavor] = useState('');
 
   const name = product[`name_${locale}`] || product.name_en;
   const desc = product[`desc_${locale}`] || product.desc_en;
@@ -81,10 +82,40 @@ export default function ProductClient({ product }: ProductClientProps) {
 
           <p style={{ color: 'var(--text-muted)', lineHeight: 1.8 }}>{desc}</p>
 
+          {product.flavors && product.flavors.length > 0 && (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-sm)' }}>
+              <label style={{ fontWeight: 800, color: 'var(--text-main)' }}>Flavors <span style={{color: 'var(--accent-pink)'}}>*</span></label>
+              <select
+                value={selectedFlavor}
+                onChange={(e) => setSelectedFlavor(e.target.value)}
+                style={{
+                  width: '100%',
+                  padding: 'var(--space-md)',
+                  borderRadius: 'var(--radius-md)',
+                  border: '1px solid var(--border)',
+                  background: 'var(--bg-surface)',
+                  color: 'var(--text-main)',
+                  fontSize: 16
+                }}
+              >
+                <option value="">Choose an option</option>
+                {product.flavors.map((flavor: string) => (
+                  <option key={flavor} value={flavor}>{flavor}</option>
+                ))}
+              </select>
+            </div>
+          )}
+
           <div style={{ display: 'flex', gap: 'var(--space-sm)', flexWrap: 'wrap' }}>
             <button
               type="button"
-              onClick={() => addItem(product)}
+              onClick={() => {
+                if (product.flavors?.length > 0 && !selectedFlavor) {
+                  alert('Please select a flavor first');
+                  return;
+                }
+                addItem({ ...product, flavor: selectedFlavor || undefined });
+              }}
               disabled={product.stock === 0}
               style={{
                 flex: '1 1 240px',
@@ -94,6 +125,7 @@ export default function ProductClient({ product }: ProductClientProps) {
                 fontWeight: 900,
                 gap: 10,
                 minHeight: 54,
+                cursor: product.stock === 0 ? 'not-allowed' : 'pointer',
               }}
             >
               <ShoppingCart size={20} />

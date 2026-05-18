@@ -8,6 +8,7 @@ import { auth } from './auth';
 type CartInputItem = {
   productId: string;
   quantity: number;
+  flavor?: string;
 };
 
 type OrderInput = {
@@ -158,6 +159,7 @@ export async function createOrder(data: OrderInput) {
                 productId: item.productId,
                 quantity: item.quantity,
                 price: product.salePrice ?? product.basePrice,
+                flavor: item.flavor || null,
               };
             }),
           },
@@ -236,6 +238,7 @@ export async function createProduct(data: any) {
     const product = await prisma.product.create({
       data: {
         ...data,
+        flavors: data.flavors ? data.flavors : [],
         images: data.images?.length ? data.images : [data.mainImage],
       },
     });
@@ -260,6 +263,7 @@ export async function updateProduct(id: string, data: any) {
       where: { id },
       data: {
         ...data,
+        flavors: data.flavors ? data.flavors : [],
         images: data.images?.length ? data.images : [data.mainImage],
       },
     });
