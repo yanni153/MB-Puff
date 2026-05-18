@@ -84,25 +84,51 @@ export default function ProductClient({ product }: ProductClientProps) {
 
           {product.flavors && product.flavors.length > 0 && (
             <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-sm)' }}>
-              <label style={{ fontWeight: 800, color: 'var(--text-main)' }}>Flavors <span style={{color: 'var(--accent-pink)'}}>*</span></label>
-              <select
-                value={selectedFlavor}
-                onChange={(e) => setSelectedFlavor(e.target.value)}
-                style={{
-                  width: '100%',
-                  padding: 'var(--space-md)',
-                  borderRadius: 'var(--radius-md)',
-                  border: '1px solid var(--border)',
-                  background: 'var(--bg-surface)',
-                  color: 'var(--text-main)',
-                  fontSize: 16
-                }}
-              >
-                <option value="">Choose an option</option>
-                {product.flavors.map((flavor: string) => (
-                  <option key={flavor} value={flavor}>{flavor}</option>
-                ))}
-              </select>
+              <label style={{ fontWeight: 800, color: 'var(--text-main)', display: 'flex', justifyContent: 'space-between' }}>
+                <span>Flavors <span style={{color: 'var(--accent-pink)'}}>*</span></span>
+                {selectedFlavor && <span style={{ color: 'var(--secondary)', fontSize: 13 }}>Selected: {selectedFlavor}</span>}
+              </label>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
+                {product.flavors.map((flavor: string) => {
+                  const isSelected = selectedFlavor === flavor;
+                  return (
+                    <button
+                      key={flavor}
+                      type="button"
+                      onClick={() => setSelectedFlavor(flavor)}
+                      style={{
+                        padding: '10px 18px',
+                        borderRadius: 'var(--radius-md)',
+                        border: isSelected ? '2px solid var(--primary)' : '1px solid var(--border)',
+                        background: isSelected ? 'rgba(191, 95, 255, 0.15)' : 'var(--bg-elevated)',
+                        color: isSelected ? 'var(--primary)' : 'var(--text-main)',
+                        fontWeight: isSelected ? 800 : 500,
+                        fontSize: 14,
+                        cursor: 'pointer',
+                        transition: 'all 0.2s ease',
+                        transform: isSelected ? 'scale(1.05)' : 'scale(1)',
+                        boxShadow: isSelected ? '0 0 15px rgba(191, 95, 255, 0.3)' : 'none',
+                        minWidth: 90,
+                        textAlign: 'center'
+                      }}
+                      onMouseEnter={(e) => {
+                        if (!isSelected) {
+                          e.currentTarget.style.border = '1px solid var(--primary)';
+                          e.currentTarget.style.color = 'var(--primary)';
+                        }
+                      }}
+                      onMouseLeave={(e) => {
+                        if (!isSelected) {
+                          e.currentTarget.style.border = '1px solid var(--border)';
+                          e.currentTarget.style.color = 'var(--text-main)';
+                        }
+                      }}
+                    >
+                      {flavor}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
           )}
 

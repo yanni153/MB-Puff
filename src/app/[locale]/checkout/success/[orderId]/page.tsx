@@ -34,7 +34,10 @@ export default async function CheckoutSuccessPage({ params }: { params: Promise<
           <h2 style={{ fontSize: 20, marginBottom: 'var(--space-md)' }}>{t('order')} #{order.id}</h2>
           {order.items.map((item: any) => (
             <div key={item.id} style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', marginBottom: 10 }}>
-              <span>{item.product[`name_${locale}`] || item.product.name_en} x {item.quantity}</span>
+              <div>
+                <span>{item.product[`name_${locale}`] || item.product.name_en} x {item.quantity}</span>
+                {item.flavor && <div style={{ fontSize: 12, color: 'var(--text-hint)', marginTop: 2 }}>Flavor: {item.flavor}</div>}
+              </div>
               <span>{formatPrice(Number(item.price) * item.quantity)}</span>
             </div>
           ))}
