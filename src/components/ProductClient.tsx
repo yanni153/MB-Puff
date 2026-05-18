@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
-import { Heart, ShieldCheck, ShoppingCart, Star, Truck } from 'lucide-react';
+import { ChevronDown, Heart, ShieldCheck, ShoppingCart, Star, Truck } from 'lucide-react';
 import Link from 'next/link';
 import { useCart } from '@/contexts/CartContext';
 import { useWishlist } from '@/contexts/WishlistContext';
@@ -83,51 +83,37 @@ export default function ProductClient({ product }: ProductClientProps) {
           <p style={{ color: 'var(--text-muted)', lineHeight: 1.8 }}>{desc}</p>
 
           {product.flavors && product.flavors.length > 0 && (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-sm)' }}>
-              <label style={{ fontWeight: 800, color: 'var(--text-main)', display: 'flex', justifyContent: 'space-between' }}>
-                <span>Flavors <span style={{color: 'var(--accent-pink)'}}>*</span></span>
-                {selectedFlavor && <span style={{ color: 'var(--secondary)', fontSize: 13 }}>Selected: {selectedFlavor}</span>}
-              </label>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
-                {product.flavors.map((flavor: string) => {
-                  const isSelected = selectedFlavor === flavor;
-                  return (
-                    <button
-                      key={flavor}
-                      type="button"
-                      onClick={() => setSelectedFlavor(flavor)}
-                      style={{
-                        padding: '10px 18px',
-                        borderRadius: 'var(--radius-md)',
-                        border: isSelected ? '2px solid var(--primary)' : '1px solid var(--border)',
-                        background: isSelected ? 'rgba(191, 95, 255, 0.15)' : 'var(--bg-elevated)',
-                        color: isSelected ? 'var(--primary)' : 'var(--text-main)',
-                        fontWeight: isSelected ? 800 : 500,
-                        fontSize: 14,
-                        cursor: 'pointer',
-                        transition: 'all 0.2s ease',
-                        transform: isSelected ? 'scale(1.05)' : 'scale(1)',
-                        boxShadow: isSelected ? '0 0 15px rgba(191, 95, 255, 0.3)' : 'none',
-                        minWidth: 90,
-                        textAlign: 'center'
-                      }}
-                      onMouseEnter={(e) => {
-                        if (!isSelected) {
-                          e.currentTarget.style.border = '1px solid var(--primary)';
-                          e.currentTarget.style.color = 'var(--primary)';
-                        }
-                      }}
-                      onMouseLeave={(e) => {
-                        if (!isSelected) {
-                          e.currentTarget.style.border = '1px solid var(--border)';
-                          e.currentTarget.style.color = 'var(--text-main)';
-                        }
-                      }}
-                    >
+            <div style={{ display: 'grid', gridTemplateColumns: '80px 1fr', alignItems: 'center', gap: 'var(--space-md)' }}>
+              <label style={{ fontWeight: 800, color: 'var(--text-main)', fontSize: 16 }}>Flavors</label>
+              <div style={{ position: 'relative' }}>
+                <select
+                  value={selectedFlavor}
+                  onChange={(e) => setSelectedFlavor(e.target.value)}
+                  style={{
+                    width: '100%',
+                    padding: '12px 40px 12px 16px',
+                    borderRadius: 'var(--radius-md)',
+                    border: selectedFlavor ? '1px solid var(--primary)' : '1px solid var(--border)',
+                    background: 'var(--bg-elevated)',
+                    color: selectedFlavor ? 'var(--text-main)' : 'var(--text-muted)',
+                    fontSize: 15,
+                    fontWeight: 600,
+                    appearance: 'none',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s ease',
+                    boxShadow: selectedFlavor ? '0 0 10px rgba(191, 95, 255, 0.15)' : 'none',
+                  }}
+                >
+                  <option value="" style={{ background: 'var(--bg-elevated)', color: 'var(--text-muted)' }}>Choose an option</option>
+                  {product.flavors.map((flavor: string) => (
+                    <option key={flavor} value={flavor} style={{ background: 'var(--bg-elevated)', color: 'var(--text-main)' }}>
                       {flavor}
-                    </button>
-                  );
-                })}
+                    </option>
+                  ))}
+                </select>
+                <div style={{ position: 'absolute', right: 14, top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none', color: selectedFlavor ? 'var(--primary)' : 'var(--text-muted)' }}>
+                  <ChevronDown size={18} />
+                </div>
               </div>
             </div>
           )}
