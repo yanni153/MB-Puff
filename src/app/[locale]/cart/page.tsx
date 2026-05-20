@@ -13,7 +13,7 @@ export default function CartPage() {
   const locale = useLocale();
   const t = useTranslations('Cart');
   const { items, subtotal, updateQuantity, removeItem } = useCart();
-  const shippingEstimate = items.length ? 600 : 0;
+  const shippingEstimate = 0;
 
   if (!items.length) {
     return (
@@ -66,7 +66,7 @@ export default function CartPage() {
         <aside className="sticky-panel" style={{ background: 'var(--bg-surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-lg)', padding: 'var(--space-xl)' }}>
           <h2 style={{ fontSize: 20, marginBottom: 'var(--space-lg)' }}>{t('summary')}</h2>
           <SummaryRow label={t('subtotal')} value={formatPrice(subtotal)} />
-          <SummaryRow label={t('shipping')} value={t('calculatedAtNextStep')} />
+          <SummaryRow label={t('shipping')} value={formatPrice(shippingEstimate)} />
           <div style={{ borderTop: '1px solid var(--border)', marginTop: 'var(--space-md)', paddingTop: 'var(--space-md)' }}>
             <SummaryRow label={t('total')} value={formatPrice(subtotal + shippingEstimate)} strong />
           </div>

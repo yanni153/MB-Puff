@@ -99,7 +99,7 @@ export async function createOrder(data: OrderInput) {
       }
     }
 
-    const shippingCost = data.wilaya.toLowerCase().includes('alger') ? 300 : 600;
+    const shippingCost = 0;
     const subtotal = data.items.reduce((sum, item) => {
       const product = productMap.get(item.productId)!;
       const price = Number(product.salePrice ?? product.basePrice);

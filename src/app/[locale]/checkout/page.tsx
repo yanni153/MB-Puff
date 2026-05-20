@@ -27,7 +27,7 @@ export default function CheckoutPage() {
     addressDetails: '',
   });
 
-  const shipping = form.wilaya.toLowerCase().includes('alger') ? 300 : 600;
+  const shipping = 0;
 
   if (!items.length) {
     return (
