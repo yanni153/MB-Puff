@@ -38,6 +38,4 @@ MB Puff is a premium e-commerce platform for high-quality electronic cigarettes 
    npm run dev
    ```
 
-## Admin Access
-- **Email**: admin@mbpuff.dz
-- **Password**: Admin1234!
+
