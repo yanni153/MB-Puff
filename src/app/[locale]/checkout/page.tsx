@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { createOrder } from '@/lib/actions';
 import { useCart } from '@/contexts/CartContext';
+import { wilayas } from '@/lib/wilayas';
 
 function formatPrice(value: number) {
   return `${value.toLocaleString('fr-DZ')} DZD`;
@@ -85,7 +86,13 @@ export default function CheckoutPage() {
               <Input label={t('fullName')} value={form.fullName} onChange={(value) => setForm({ ...form, fullName: value })} />
               <Input label={t('phone')} value={form.phone} onChange={(value) => setForm({ ...form, phone: value })} />
               <div className="form-two-column">
-                <Input label={t('wilaya')} value={form.wilaya} onChange={(value) => setForm({ ...form, wilaya: value })} />
+                <Select 
+                  label={t('wilaya')} 
+                  value={form.wilaya} 
+                  onChange={(value) => setForm({ ...form, wilaya: value })} 
+                  options={wilayas} 
+                  placeholder={locale === 'ar' ? 'اختر الولاية' : locale === 'fr' ? 'Sélectionner la Wilaya' : 'Select Wilaya'}
+                />
                 <Input label={t('commune')} value={form.commune} onChange={(value) => setForm({ ...form, commune: value })} />
               </div>
               <Input label={t('addressDetails')} value={form.addressDetails} onChange={(value) => setForm({ ...form, addressDetails: value })} textarea />
@@ -155,6 +162,47 @@ function Input({ label, value, onChange, textarea }: { label: string; value: str
     <label style={{ display: 'grid', gap: 6, color: 'var(--text-muted)', fontSize: 14, fontWeight: 700 }}>
       {label}
       {textarea ? <textarea {...shared} rows={4} /> : <input {...shared} />}
+    </label>
+  );
+}
+
+function Select({ 
+  label, 
+  value, 
+  onChange, 
+  options, 
+  placeholder 
+}: { 
+  label: string; 
+  value: string; 
+  onChange: (value: string) => void; 
+  options: string[]; 
+  placeholder: string;
+}) {
+  return (
+    <label style={{ display: 'grid', gap: 6, color: 'var(--text-muted)', fontSize: 14, fontWeight: 700 }}>
+      {label}
+      <select
+        value={value}
+        onChange={(event) => onChange(event.target.value)}
+        required
+        style={{ 
+          width: '100%', 
+          borderRadius: 'var(--radius-md)', 
+          background: 'var(--bg-elevated)', 
+          border: '1px solid var(--border)', 
+          color: 'var(--text-main)', 
+          padding: '12px 14px',
+          cursor: 'pointer'
+        }}
+      >
+        <option value="" disabled style={{ background: 'var(--bg-surface)' }}>{placeholder}</option>
+        {options.map((opt) => (
+          <option key={opt} value={opt} style={{ background: 'var(--bg-surface)' }}>
+            {opt}
+          </option>
+        ))}
+      </select>
     </label>
   );
 }
