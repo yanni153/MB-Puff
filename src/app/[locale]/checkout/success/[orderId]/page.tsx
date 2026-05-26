@@ -52,7 +52,7 @@ export default async function CheckoutSuccessPage({ params }: { params: Promise<
           <p style={{ color: 'var(--text-muted)' }}>{order.wilaya}, {order.commune}</p>
           <p style={{ color: 'var(--text-muted)' }}>{order.addressDetails}</p>
           <p style={{ color: 'var(--text-muted)' }}>{t('phone')}: {order.customerPhone}</p>
-          <p style={{ color: 'var(--secondary)', marginTop: 'var(--space-md)' }}>{t('estimatedDelivery')}: {order.wilaya.toLowerCase().includes('alger') ? '1-2' : '2-4'} {tCommon('days')}</p>
+          <p style={{ color: 'var(--secondary)', marginTop: 'var(--space-md)' }}>{t('estimatedDelivery')}: 1-2 {tCommon('days')}</p>
         </section>
       </div>
 
