@@ -15,7 +15,6 @@ export default async function HomePage() {
 
   try {
     productsRaw = await prisma.product.findMany({
-      take: 8,
       include: { category: true },
       orderBy: { createdAt: 'desc' }
     });
@@ -86,22 +85,6 @@ export default async function HomePage() {
             title={t('supportTitle')}
             desc={t('supportDesc')}
           />
-        </div>
-      </section>
-
-      {/* Recent Arrivals */}
-      <section style={{ padding: 'var(--space-4xl) 0' }}>
-        <div className="container">
-          <div style={{ marginBottom: 'var(--space-3xl)' }}>
-            <h2 style={{ fontFamily: 'Outfit, sans-serif', fontSize: '32px', fontWeight: 600 }}>
-              {t('recentArrivals')}
-            </h2>
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: 'var(--space-xl)' }}>
-            {products.slice(0, 4).map((p: any) => (
-              <ProductCard key={p.id} product={p} />
-            ))}
-          </div>
         </div>
       </section>
     </main>
