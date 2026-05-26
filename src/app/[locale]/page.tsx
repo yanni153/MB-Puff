@@ -5,6 +5,7 @@ import { RefreshCcw, Shield, Truck, Zap } from 'lucide-react';
 import ProductCard from '@/components/ProductCard';
 import CategoryStrip from '@/components/CategoryStrip';
 import Hero from '@/components/Hero';
+import ProductTicker from '@/components/ProductTicker';
 import { serializePrisma } from '@/lib/utils';
 
 export default async function HomePage() {
@@ -39,6 +40,9 @@ export default async function HomePage() {
           <CategoryStrip categories={categories} />
         </div>
       </section>
+
+      {/* New Arrivals Ticker */}
+      <ProductTicker products={products.slice(0, 8)} title={t('recentArrivals')} />
 
       {/* Trending Products */}
       <section style={{ padding: 'var(--space-4xl) 0' }}>
