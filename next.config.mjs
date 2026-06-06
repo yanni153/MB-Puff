@@ -25,6 +25,21 @@ const nextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'mb-puff.vercel.app',
+          },
+        ],
+        destination: 'https://mbpuff.com/:path*',
+        permanent: true,
+      },
+    ];
+  },
   turbopack: {
     root: __dirname,
   },
