@@ -1,0 +1,551 @@
+{
+  "categories": [
+    {
+      "id": "cmoymxfxb00016op9klng6ito",
+      "name_en": "Accessories",
+      "name_ar": "اكسسوارات",
+      "name_fr": "Accessoires",
+      "slug": "accessories",
+      "parentId": null,
+      "createdAt": "2026-05-09T17:45:47.999Z",
+      "updatedAt": "2026-05-09T17:45:47.999Z"
+    },
+    {
+      "id": "cmoymxfz200026op9hnljfllq",
+      "name_en": "Box Mods",
+      "name_ar": "أجهزة بوكس مود",
+      "name_fr": "Box Mods",
+      "slug": "box-mods",
+      "parentId": null,
+      "createdAt": "2026-05-09T17:45:48.062Z",
+      "updatedAt": "2026-05-09T17:45:48.062Z"
+    },
+    {
+      "id": "cmoymxg0r00036op9o54vjfix",
+      "name_en": "Disposable Vapes",
+      "name_ar": "فيب للاستعمال الواحد",
+      "name_fr": "Vapes Jetables",
+      "slug": "disposable-vapes",
+      "parentId": null,
+      "createdAt": "2026-05-09T17:45:48.123Z",
+      "updatedAt": "2026-05-09T17:45:48.123Z"
+    },
+    {
+      "id": "cmoymxg2i00046op97bej1qf7",
+      "name_en": "E-Liquids",
+      "name_ar": "سوائل إلكترونية",
+      "name_fr": "E-Liquides",
+      "slug": "e-liquids",
+      "parentId": null,
+      "createdAt": "2026-05-09T17:45:48.186Z",
+      "updatedAt": "2026-05-09T17:45:48.186Z"
+    },
+    {
+      "id": "cmoymxg4600056op94tpbpccm",
+      "name_en": "Pod Systems",
+      "name_ar": "أجهزة البود",
+      "name_fr": "Systèmes Pod",
+      "slug": "pod-systems",
+      "parentId": null,
+      "createdAt": "2026-05-09T17:45:48.246Z",
+      "updatedAt": "2026-05-10T13:56:38.248Z"
+    }
+  ],
+  "products": [
+    {
+      "id": "cmoymxg9r00086op9q04b30l9",
+      "name_en": "JNR 40K Léopard ",
+      "name_ar": " JNR 40K Léopard",
+      "name_fr": "JNR 40K Léopard",
+      "desc_en": "Livraison Gratuite JNR Léopard 40000 original vape product available in Algeria",
+      "desc_ar": "JNR Leopard 40000 Mixed Berry منتج فيب أصلي متوفر في الجزائر.",
+      "desc_fr": "JNR Leopard 40000 Mixed Berry produit vape original disponible en Algerie.",
+      "slug": "jnr40000",
+      "basePrice": "4000",
+      "salePrice": "3100",
+      "mainImage": "https://hesgpaj5hehy2qtp.public.blob.vercel-storage.com/products/1779143444167-jnr-leopard-40kSS.webp",
+      "images": [
+        "https://hesgpaj5hehy2qtp.public.blob.vercel-storage.com/products/1779143444167-jnr-leopard-40kSS.webp"
+      ],
+      "flavors": [
+        "STRAWBERRY KIWI",
+        "MIXED BERRY",
+        "BLUEBERRY ON ICE",
+        "BLUEBERRY SOUR RASPBERRY",
+        "STRAWBERRY RAPBERRY CHERRY ICE"
+      ],
+      "stock": 10,
+      "isFeatured": false,
+      "categoryId": "cmoymxg0r00036op9o54vjfix",
+      "createdAt": "2026-05-09T17:45:48.447Z",
+      "updatedAt": "2026-06-05T02:43:12.710Z"
+    },
+    {
+      "id": "cmoymxgd6000a6op9fbll6jnd",
+      "name_en": "JNR 60K",
+      "name_ar": "JNR 60K ",
+      "name_fr": "JNR 60K ",
+      "desc_en": "LIVRAISON GRATUITE ",
+      "desc_ar": "JNR Lila Kiss Peach Berry منتج فيب أصلي متوفر في الجزائر.",
+      "desc_fr": "JNR Lila Kiss Peach Berry produit vape original disponible en Algerie.",
+      "slug": "jnr-lila-kiss",
+      "basePrice": "5500",
+      "salePrice": "3900",
+      "mainImage": "https://hesgpaj5hehy2qtp.public.blob.vercel-storage.com/products/1779139453859-JNR-Lila-Kiss-60000-Puffs-2.webp",
+      "images": [
+        "https://hesgpaj5hehy2qtp.public.blob.vercel-storage.com/products/1779139453859-JNR-Lila-Kiss-60000-Puffs-2.webp"
+      ],
+      "flavors": [
+        "Peach Berry",
+        "CHERRY ICE",
+        "STRAWBERRY ICE"
+      ],
+      "stock": 20,
+      "isFeatured": false,
+      "categoryId": "cmoymxg0r00036op9o54vjfix",
+      "createdAt": "2026-05-09T17:45:48.570Z",
+      "updatedAt": "2026-06-05T02:41:08.023Z"
+    },
+    {
+      "id": "cmpbyotmy000004jvaycldgq2",
+      "name_en": "SNUS PABLO BLUE RASPBERRY",
+      "name_ar": "SNUS PABLO BLUE RASPBERRY",
+      "name_fr": "SNUS PABLO BLUE RASPBERRY",
+      "desc_en": " SNUS PABLO BLUE RASPBERRY 50 MG",
+      "desc_ar": "LIVRAISON GRATUITE",
+      "desc_fr": "LIVRAISON GRATUITE",
+      "slug": "snus-pablo-blue-raspberry",
+      "basePrice": "1800",
+      "salePrice": "1250",
+      "mainImage": "https://hesgpaj5hehy2qtp.public.blob.vercel-storage.com/products/1779154555667-526d5540-2be2-47e8-99d7-38daf2d575e4.png",
+      "images": [
+        "https://hesgpaj5hehy2qtp.public.blob.vercel-storage.com/products/1779154555667-526d5540-2be2-47e8-99d7-38daf2d575e4.png"
+      ],
+      "flavors": [
+        "BANANA ICE",
+        "PASSION FRUIT",
+        "GREEN MINT",
+        "BLUE RASPBERRY"
+      ],
+      "stock": 70,
+      "isFeatured": false,
+      "categoryId": "cmoymxg0r00036op9o54vjfix",
+      "createdAt": "2026-05-19T01:36:01.546Z",
+      "updatedAt": "2026-06-05T02:36:59.510Z"
+    },
+    {
+      "id": "cmpjxt9k1000004jpqq18bvti",
+      "name_en": "JNR 44K Doubles Goûts",
+      "name_ar": "JNR 44K Doubles Goûts",
+      "name_fr": "JNR 44K Doubles Goûts",
+      "desc_en": "JNR 44K Doubles Goûts",
+      "desc_ar": "JNR 44K Doubles Goûts",
+      "desc_fr": "JNR 44K Doubles Goûts",
+      "slug": "jnr-44k-doubles-gots",
+      "basePrice": "4400",
+      "salePrice": "3300",
+      "mainImage": "https://hesgpaj5hehy2qtp.public.blob.vercel-storage.com/products/1779636614523-1-1-600x600KK9999999999999.jpg",
+      "images": [
+        "https://hesgpaj5hehy2qtp.public.blob.vercel-storage.com/products/1779636614523-1-1-600x600KK9999999999999.jpg",
+        "https://hesgpaj5hehy2qtp.public.blob.vercel-storage.com/products/1779636643780-1.Blue-Razz-Cherry-Cherry-600x600MMMMMMM.jpg"
+      ],
+      "flavors": [
+        "FRESH STRAWBERRY ICE  BLUEBERRY SOUR RASPBERRY",
+        "BLUE RAZZ CHERRY  CHERRY"
+      ],
+      "stock": 30,
+      "isFeatured": false,
+      "categoryId": "cmoymxg0r00036op9o54vjfix",
+      "createdAt": "2026-05-24T15:33:38.593Z",
+      "updatedAt": "2026-06-05T02:41:34.405Z"
+    },
+    {
+      "id": "cmpbxnnrt000004la4k4qmdqf",
+      "name_en": "SNUS PABLO RED",
+      "name_ar": "SNUS PABLO RED",
+      "name_fr": "SNUS PABLO RED",
+      "desc_en": "SNUS PABLO RED NICOTINE 30 MG",
+      "desc_ar": "SNUS PABLO RED LIVRAISON GRATUITE",
+      "desc_fr": "SNUS PABLO RED LIVRAISON GRATUITE",
+      "slug": "snus-pablo",
+      "basePrice": "1800",
+      "salePrice": "1250",
+      "mainImage": "https://hesgpaj5hehy2qtp.public.blob.vercel-storage.com/products/1779152824090-pablo-red-853518_540x5.jpg",
+      "images": [
+        "https://hesgpaj5hehy2qtp.public.blob.vercel-storage.com/products/1779152824090-pablo-red-853518_540x5.jpg"
+      ],
+      "flavors": [],
+      "stock": 80,
+      "isFeatured": false,
+      "categoryId": "cmoymxg0r00036op9o54vjfix",
+      "createdAt": "2026-05-19T01:07:07.673Z",
+      "updatedAt": "2026-06-05T02:37:22.939Z"
+    },
+    {
+      "id": "cmpbmcg9o000004jmpiah57ru",
+      "name_en": "AL FAKHER 60K",
+      "name_ar": "الفاخر 60K",
+      "name_fr": " AL FAKHER 60K",
+      "desc_en": "AL FAKHER 60K Livraison Gratuite",
+      "desc_ar": "الفاخر 60K ",
+      "desc_fr": "AL FAKHER 60K LUSH ICE",
+      "slug": "al-fakher-60k",
+      "basePrice": "6000",
+      "salePrice": "4999",
+      "mainImage": "https://hesgpaj5hehy2qtp.public.blob.vercel-storage.com/products/1779741605606-yyyyhyy.jpg",
+      "images": [
+        "https://hesgpaj5hehy2qtp.public.blob.vercel-storage.com/products/1779741605606-yyyyhyy.jpg"
+      ],
+      "flavors": [
+        "Lush Ice",
+        "LOVE",
+        "CHERRY ICE",
+        "WATERMELON CHERRY",
+        "WATERMELON KIWI",
+        "HAWAI",
+        "ENGLEEZI",
+        "BERRY ICE",
+        "BLACKCURRANT ICE",
+        "CHERRY FIZZ",
+        "STRAWBERRY PUNCH",
+        "BLUEBERRY GUM",
+        "PEACH ICE"
+      ],
+      "stock": 51,
+      "isFeatured": false,
+      "categoryId": "cmoymxg0r00036op9o54vjfix",
+      "createdAt": "2026-05-18T19:50:28.956Z",
+      "updatedAt": "2026-06-03T19:49:35.905Z"
+    },
+    {
+      "id": "cmpbt1zi4000004laeknunjp8",
+      "name_en": "  JNR 42K ",
+      "name_ar": " JNR 42K",
+      "name_fr": "JNR 42K ",
+      "desc_en": "  JNR 42000 Lion King Livraison Gratuite",
+      "desc_ar": "  JNR 42000 Lion King",
+      "desc_fr": "  JNR 42000 Lion King",
+      "slug": "jnr-42000-livraison-gratuit",
+      "basePrice": "4000",
+      "salePrice": "3300",
+      "mainImage": "https://hesgpaj5hehy2qtp.public.blob.vercel-storage.com/products/1779145091148-Lion-King-42K-JNR-Vape-Watermelon-Ice-600x6009.jpg",
+      "images": [
+        "https://hesgpaj5hehy2qtp.public.blob.vercel-storage.com/products/1779145091148-Lion-King-42K-JNR-Vape-Watermelon-Ice-600x6009.jpg"
+      ],
+      "flavors": [
+        "HUBBA BUBBA STRAWBERRY",
+        "MIXED BERRY",
+        "HAWAI",
+        "LOVE 66",
+        "SUMMER PEACH ICE",
+        "STRAWBERRY WATERMELON ICE",
+        "WATERMELON ICE"
+      ],
+      "stock": 30,
+      "isFeatured": false,
+      "categoryId": "cmoymxg0r00036op9o54vjfix",
+      "createdAt": "2026-05-18T22:58:17.980Z",
+      "updatedAt": "2026-06-05T02:42:44.229Z"
+    },
+    {
+      "id": "cmpbw6old000004lath9ugrag",
+      "name_en": "TORNADO 9K ",
+      "name_ar": "TORNADO 9K",
+      "name_fr": "TORNADO 9K",
+      "desc_en": "TORNADO 9K",
+      "desc_ar": "TORNADO 9K PINK LEMONADE",
+      "desc_fr": "TORNADO 9K PINK LEMONADE",
+      "slug": "tornado-9k-pink-lemonade",
+      "basePrice": "2800",
+      "salePrice": "2100",
+      "mainImage": "https://hesgpaj5hehy2qtp.public.blob.vercel-storage.com/products/1779638079232-RandM-Tornado-9000-Lush-Ice-800x800CC.jpg",
+      "images": [
+        "https://hesgpaj5hehy2qtp.public.blob.vercel-storage.com/products/1779638079232-RandM-Tornado-9000-Lush-Ice-800x800CC.jpg",
+        "https://hesgpaj5hehy2qtp.public.blob.vercel-storage.com/products/1779638079414-GGLE.jpg"
+      ],
+      "flavors": [
+        "FIZZY CHERRY",
+        "PINK LEMONADE",
+        "BLUE RAZZ KUSH",
+        "BLACK ICE",
+        "WATERMELON BUBBLE GUM",
+        "LEMON LIME",
+        "LUSH  ICE",
+        "ICE POP"
+      ],
+      "stock": 61,
+      "isFeatured": false,
+      "categoryId": "cmoymxg0r00036op9o54vjfix",
+      "createdAt": "2026-05-19T00:25:55.969Z",
+      "updatedAt": "2026-06-05T02:38:45.587Z"
+    },
+    {
+      "id": "cmpdd0yjl000004l4r4r2u8r5",
+      "name_en": "SNUS VÉLO ",
+      "name_ar": "SNUS VÉLO ",
+      "name_fr": "SNUS VÉLO ",
+      "desc_en": "SNUS VÉLO ",
+      "desc_ar": "SNUS VÉLO ",
+      "desc_fr": "SNUS VÉLO ",
+      "slug": "snus-vlo",
+      "basePrice": "1800",
+      "salePrice": "1250",
+      "mainImage": "https://hesgpaj5hehy2qtp.public.blob.vercel-storage.com/products/1779238952389-WhatsAppImage2026-05-20at01.58.37hh.jpeg",
+      "images": [
+        "https://hesgpaj5hehy2qtp.public.blob.vercel-storage.com/products/1779238952389-WhatsAppImage2026-05-20at01.58.37hh.jpeg"
+      ],
+      "flavors": [
+        "MINT POLAR",
+        "MIGHTY PEPPERMINT",
+        "ORANGE SPARK",
+        "X-FREEZE MAX"
+      ],
+      "stock": 90,
+      "isFeatured": false,
+      "categoryId": "cmoymxg0r00036op9o54vjfix",
+      "createdAt": "2026-05-20T01:05:08.577Z",
+      "updatedAt": "2026-06-05T02:36:47.173Z"
+    },
+    {
+      "id": "cmpjyatwz000005l2wl21f2dc",
+      "name_en": "JNR Falcon X – 18000",
+      "name_ar": "JNR Falcon X – 18000",
+      "name_fr": "JNR Falcon X – 18000",
+      "desc_en": "JNR Falcon X – 18000",
+      "desc_ar": "JNR Falcon X – 18000",
+      "desc_fr": "JNR Falcon X – 18000",
+      "slug": "jnr-falcon-x-18000",
+      "basePrice": "3400",
+      "salePrice": "2899",
+      "mainImage": "https://hesgpaj5hehy2qtp.public.blob.vercel-storage.com/products/1779637585855-PUFF-JNR-FALCON-X-18000-BLUEBERRY-RASPBERRY-CHERRY9.jpg",
+      "images": [
+        "https://hesgpaj5hehy2qtp.public.blob.vercel-storage.com/products/1779637585855-PUFF-JNR-FALCON-X-18000-BLUEBERRY-RASPBERRY-CHERRY9.jpg",
+        "https://hesgpaj5hehy2qtp.public.blob.vercel-storage.com/products/1779637586121-jnr-falcon-x-18k-hawaii-700x700MISS16.jpg",
+        "https://hesgpaj5hehy2qtp.public.blob.vercel-storage.com/products/1779637586218-jnr-falcon-x-18k-strawberry-watermelon-ice-700x700OUS.webp",
+        "https://hesgpaj5hehy2qtp.public.blob.vercel-storage.com/products/1779637632590-jnr-falcon-x-18k-blue-razz-cherry-700x700CC.webp"
+      ],
+      "flavors": [
+        "BLUE RAZZ CHERRY",
+        "STRAWBERRY WATERMELON ICE",
+        "HAWAI",
+        "BLUEBERRY RASPBERRY CHERRY"
+      ],
+      "stock": 46,
+      "isFeatured": false,
+      "categoryId": "cmoymxg0r00036op9o54vjfix",
+      "createdAt": "2026-05-24T15:47:18.132Z",
+      "updatedAt": "2026-05-25T23:46:44.725Z"
+    }
+  ],
+  "variants": [],
+  "users": [
+    {
+      "id": "cmoyo98kr000004l6ip7evgyz",
+      "name": "akram",
+      "email": "smakram@aaa.aa",
+      "emailVerified": null,
+      "passwordHash": "$2b$10$KDLp3oeEqLbEbkr8vKWLsOIOjELJkA5T3TAlNB523dVXXAb9uqBPK",
+      "phone": "0669713720",
+      "role": "CUSTOMER",
+      "image": null,
+      "createdAt": "2026-05-09T18:22:57.963Z",
+      "updatedAt": "2026-05-09T18:22:57.963Z"
+    },
+    {
+      "id": "cmoyvmvth000004lan19bozeg",
+      "name": "Bkirine adem",
+      "email": "guest-1778363371917-9d06wfb0d07@checkout.mbpuff.local",
+      "emailVerified": null,
+      "passwordHash": null,
+      "phone": "0555857416",
+      "role": "CUSTOMER",
+      "image": null,
+      "createdAt": "2026-05-09T21:49:31.926Z",
+      "updatedAt": "2026-05-09T21:49:31.926Z"
+    },
+    {
+      "id": "cmoymxfvh00006op9i87g4uph",
+      "name": "Kossai mana",
+      "email": "admin@mbpuff.dz",
+      "emailVerified": null,
+      "passwordHash": "$2b$10$w9Biqy/aO0VCOA1uJddJXuFW0GsvbyHTQBtc6LMN0uJBQ7aOx9Af.",
+      "phone": "0793105655",
+      "role": "ADMIN",
+      "image": null,
+      "createdAt": "2026-05-09T17:45:47.933Z",
+      "updatedAt": "2026-05-09T23:13:09.790Z"
+    },
+    {
+      "id": "cmq2fyvne000004law9c2bzi0",
+      "name": "Adem",
+      "email": "guest-1780755704754-jzrl3w2wgxg@checkout.mbpuff.local",
+      "emailVerified": null,
+      "passwordHash": null,
+      "phone": "0555857417",
+      "role": "CUSTOMER",
+      "image": null,
+      "createdAt": "2026-06-06T14:21:44.762Z",
+      "updatedAt": "2026-06-06T14:21:44.762Z"
+    }
+  ],
+  "customers": [
+    {
+      "id": "cmoyo98nm000104l6ev4p2ww5",
+      "userId": "cmoyo98kr000004l6ip7evgyz",
+      "firstName": "akram",
+      "lastName": "akram",
+      "createdAt": "2026-05-09T18:22:57.963Z",
+      "updatedAt": "2026-05-09T18:22:57.963Z"
+    },
+    {
+      "id": "cmoyvmvwc000104laf0hcc1lr",
+      "userId": "cmoyvmvth000004lan19bozeg",
+      "firstName": "Bkirine",
+      "lastName": "adem",
+      "createdAt": "2026-05-09T21:49:32.028Z",
+      "updatedAt": "2026-05-09T21:49:32.028Z"
+    },
+    {
+      "id": "cmoyymfpb000004jya8c6vdhu",
+      "userId": "cmoymxfvh00006op9i87g4uph",
+      "firstName": "Kossai",
+      "lastName": "mana",
+      "createdAt": "2026-05-09T23:13:09.887Z",
+      "updatedAt": "2026-05-09T23:13:09.887Z"
+    },
+    {
+      "id": "cmq2fyvqq000104la8dcvq02y",
+      "userId": "cmq2fyvne000004law9c2bzi0",
+      "firstName": "Adem",
+      "lastName": "Adem",
+      "createdAt": "2026-06-06T14:21:44.882Z",
+      "updatedAt": "2026-06-06T14:21:44.882Z"
+    }
+  ],
+  "addresses": [],
+  "orders": [
+    {
+      "id": "cmoyvmvzi000204lant1zde0s",
+      "customerId": "cmoyvmvwc000104laf0hcc1lr",
+      "userId": "cmoyvmvth000004lan19bozeg",
+      "status": "DELIVERED",
+      "totalAmount": "3600",
+      "shippingCost": "600",
+      "paymentMethod": "COD",
+      "wilaya": "Biskra",
+      "commune": "Tolga",
+      "addressDetails": "Cite 17 octobre 1961",
+      "customerPhone": "0555857416",
+      "createdAt": "2026-05-09T21:49:32.142Z",
+      "updatedAt": "2026-05-09T22:53:16.572Z"
+    },
+    {
+      "id": "cmoyymfsa000104jy9hgvtr46",
+      "customerId": "cmoyymfpb000004jya8c6vdhu",
+      "userId": "cmoymxfvh00006op9i87g4uph",
+      "status": "DELIVERED",
+      "totalAmount": "3900",
+      "shippingCost": "600",
+      "paymentMethod": "COD",
+      "wilaya": "biskra",
+      "commune": "tolga",
+      "addressDetails": "11 decembre",
+      "customerPhone": "0793105655",
+      "createdAt": "2026-05-09T23:13:09.994Z",
+      "updatedAt": "2026-05-09T23:14:21.171Z"
+    },
+    {
+      "id": "cmplutln7000004k0h1v7krzz",
+      "customerId": "cmoyymfpb000004jya8c6vdhu",
+      "userId": "cmoymxfvh00006op9i87g4uph",
+      "status": "CONFIRMED",
+      "totalAmount": "11596",
+      "shippingCost": "0",
+      "paymentMethod": "COD",
+      "wilaya": "ALGER",
+      "commune": "HYDRA",
+      "addressDetails": "VAL DHYDRA",
+      "customerPhone": "0794662117",
+      "createdAt": "2026-05-25T23:45:27.764Z",
+      "updatedAt": "2026-05-25T23:46:44.628Z"
+    },
+    {
+      "id": "cmq2fyvu6000204la8nuy4h1u",
+      "customerId": "cmq2fyvqq000104la8dcvq02y",
+      "userId": "cmq2fyvne000004law9c2bzi0",
+      "status": "PENDING_CONFIRMATION",
+      "totalAmount": "3300",
+      "shippingCost": "0",
+      "paymentMethod": "COD",
+      "wilaya": "07. Biskra",
+      "commune": "-",
+      "addressDetails": "17october la cnep",
+      "customerPhone": "0555857417",
+      "createdAt": "2026-06-06T14:21:45.006Z",
+      "updatedAt": "2026-06-06T14:21:45.006Z"
+    }
+  ],
+  "orderItems": [
+    {
+      "id": "cmoyvmw29000304lahh7gqa1e",
+      "orderId": "cmoyvmvzi000204lant1zde0s",
+      "productId": "cmoymxgd6000a6op9fbll6jnd",
+      "variantId": null,
+      "flavor": null,
+      "quantity": 1,
+      "price": "3000"
+    },
+    {
+      "id": "cmoyymfux000204jyf4fl9977",
+      "orderId": "cmoyymfsa000104jy9hgvtr46",
+      "productId": "cmoymxg9r00086op9q04b30l9",
+      "variantId": null,
+      "flavor": null,
+      "quantity": 1,
+      "price": "3300"
+    },
+    {
+      "id": "cmplutlql000104k09gyjhlun",
+      "orderId": "cmplutln7000004k0h1v7krzz",
+      "productId": "cmpjyatwz000005l2wl21f2dc",
+      "variantId": null,
+      "flavor": "BLUEBERRY RASPBERRY CHERRY",
+      "quantity": 4,
+      "price": "2899"
+    },
+    {
+      "id": "cmq2fyvwy000304lasatcdkm5",
+      "orderId": "cmq2fyvu6000204la8nuy4h1u",
+      "productId": "cmpjxt9k1000004jpqq18bvti",
+      "variantId": null,
+      "flavor": null,
+      "quantity": 1,
+      "price": "3300"
+    }
+  ],
+  "wishlists": [],
+  "reviews": [],
+  "promoCodes": [
+    {
+      "id": "cmoymxh2b000j6op9qq32i3ll",
+      "code": "MEZZA10",
+      "discountPercent": 10,
+      "maxUses": 100,
+      "usedCount": 0,
+      "expiresAt": null,
+      "isActive": true,
+      "createdAt": "2026-05-09T17:45:49.475Z"
+    },
+    {
+      "id": "cmoymxh2b000k6op9kw84zqti",
+      "code": "WELCOME20",
+      "discountPercent": 20,
+      "maxUses": 50,
+      "usedCount": 0,
+      "expiresAt": null,
+      "isActive": true,
+      "createdAt": "2026-05-09T17:45:49.475Z"
+    }
+  ],
+  "homepageSections": []
+}
