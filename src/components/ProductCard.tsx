@@ -2,6 +2,7 @@
 
 import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Heart, ShoppingCart, Star } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useCart } from '@/contexts/CartContext';
@@ -48,7 +49,7 @@ export default function ProductCard({ product }: ProductCardProps) {
       }}
     >
       <Link href={`/${locale}/product/${product.slug}`} style={{ display: 'block', position: 'relative', aspectRatio: '1/1', background: 'var(--bg-elevated)', overflow: 'hidden' }}>
-        <img src={product.mainImage} alt={name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+        <Image src={product.mainImage} alt={name} fill style={{ objectFit: 'cover' }} sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
         {onSale && (
           <span style={{
             position: 'absolute',

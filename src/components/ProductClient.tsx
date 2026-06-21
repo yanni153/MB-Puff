@@ -4,6 +4,7 @@ import { useMemo, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { ChevronDown, Heart, ShieldCheck, ShoppingCart, Star, Truck } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useCart } from '@/contexts/CartContext';
 import { useWishlist } from '@/contexts/WishlistContext';
 
@@ -38,8 +39,9 @@ export default function ProductClient({ product }: ProductClientProps) {
             border: '1px solid var(--border)',
             borderRadius: 'var(--radius-lg)',
             overflow: 'hidden',
+            position: 'relative',
           }}>
-            <img src={activeImage} alt={name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            <Image src={activeImage} alt={name} fill style={{ objectFit: 'cover' }} priority sizes="(max-width: 768px) 100vw, 500px" />
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 'var(--space-sm)', marginTop: 'var(--space-md)' }}>
@@ -55,9 +57,10 @@ export default function ProductClient({ product }: ProductClientProps) {
                   overflow: 'hidden',
                   padding: 0,
                   background: 'var(--bg-surface)',
+                  position: 'relative',
                 }}
               >
-                <img src={image} alt={`${name} ${index + 1}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                <Image src={image} alt={`${name} ${index + 1}`} fill style={{ objectFit: 'cover' }} sizes="120px" />
               </button>
             ))}
           </div>

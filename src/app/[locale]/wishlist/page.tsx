@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useLocale } from 'next-intl';
 import { Heart, ShoppingCart, Trash2 } from 'lucide-react';
 import { useCart } from '@/contexts/CartContext';
@@ -36,7 +37,9 @@ export default function WishlistPage() {
           const name = (item as any)[`name_${locale}`] || item.name_en;
           return (
             <article key={item.id} style={{ background: 'var(--bg-surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-lg)', overflow: 'hidden' }}>
-              <Link href={`/${locale}/product/${item.slug}`}><img src={item.mainImage} alt={name} style={{ width: '100%', aspectRatio: '1/1', objectFit: 'cover' }} /></Link>
+              <Link href={`/${locale}/product/${item.slug}`} style={{ display: 'block', position: 'relative', aspectRatio: '1/1' }}>
+                <Image src={item.mainImage} alt={name} fill style={{ objectFit: 'cover' }} sizes="(max-width: 768px) 100vw, 300px" />
+              </Link>
               <div style={{ padding: 'var(--space-md)' }}>
                 <h2 style={{ fontSize: 16, minHeight: 44 }}>{name}</h2>
                 <p style={{ color: 'var(--secondary)', fontWeight: 900 }}>{formatPrice(item.salePrice ?? item.basePrice)}</p>

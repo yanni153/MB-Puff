@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useLocale, useTranslations } from 'next-intl';
 import { Minus, Plus, Trash2 } from 'lucide-react';
 import { useCart } from '@/contexts/CartContext';
@@ -40,7 +41,9 @@ export default function CartPage() {
             const price = Number(item.salePrice ?? item.basePrice);
             return (
               <article key={`${item.id}-${item.flavor || ''}`} style={{ display: 'grid', gridTemplateColumns: '96px 1fr auto', gap: 'var(--space-md)', alignItems: 'center', background: 'var(--bg-surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-lg)', padding: 'var(--space-md)' }}>
-                <img src={item.mainImage} alt={name} style={{ width: 96, height: 96, objectFit: 'cover', borderRadius: 'var(--radius-md)' }} />
+                <div style={{ position: 'relative', width: 96, height: 96, overflow: 'hidden', borderRadius: 'var(--radius-md)', flexShrink: 0 }}>
+                  <Image src={item.mainImage} alt={name} fill style={{ objectFit: 'cover' }} sizes="96px" />
+                </div>
                 <div>
                   <Link href={`/${locale}/product/${item.slug}`} style={{ fontWeight: 800 }}>{name}</Link>
                   {item.flavor && <div style={{ color: 'var(--text-hint)', fontSize: 13, marginTop: 4 }}>Flavor: {item.flavor}</div>}
