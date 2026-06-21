@@ -47,3 +47,6 @@ next-env.d.ts
 /project_credentials.txt
 
 .env*
+
+/New folder
+
