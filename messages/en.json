@@ -114,7 +114,10 @@
         "createOrderFailed": "Failed to create order.",
         "paymentDescription": "Pay after your order is confirmed and delivered.",
         "estimatedDelivery": "Estimated delivery",
-        "days": "days"
+        "days": "days",
+        "deliveryMethod": "Delivery Method",
+        "homeDelivery": "Home Delivery (À domicile)",
+        "deskDelivery": "Office pickup (Stop-desk)"
     },
     "AgeGate": {
         "title": "Age Verification",

@@ -17,6 +17,8 @@ type OrderInput = {
   wilaya: string;
   commune: string;
   addressDetails: string;
+  shippingCost?: number;
+  shippingMethod?: string;
   items: CartInputItem[];
 };
 
@@ -99,7 +101,7 @@ export async function createOrder(data: OrderInput) {
       }
     }
 
-    const shippingCost = 0;
+    const shippingCost = data.shippingCost !== undefined ? Number(data.shippingCost) : 0;
     const subtotal = data.items.reduce((sum, item) => {
       const product = productMap.get(item.productId)!;
       const price = Number(product.salePrice ?? product.basePrice);
@@ -149,7 +151,9 @@ export async function createOrder(data: OrderInput) {
           shippingCost,
           wilaya: data.wilaya.trim(),
           commune: data.commune.trim() || '-',
-          addressDetails: data.addressDetails.trim(),
+          addressDetails: data.shippingMethod 
+            ? `[${data.shippingMethod}] ${data.addressDetails.trim()}`
+            : data.addressDetails.trim(),
           customerPhone: data.phone.trim(),
           paymentMethod: 'COD',
           items: {

@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { createOrder } from '@/lib/actions';
 import { useCart } from '@/contexts/CartContext';
 import { wilayas } from '@/lib/wilayas';
+import { getShippingRates } from '@/lib/shipping';
 
 function formatPrice(value: number) {
   return `${value.toLocaleString('fr-DZ')} DZD`;
@@ -26,9 +27,11 @@ export default function CheckoutPage() {
     wilaya: '',
     commune: '',
     addressDetails: '',
+    shippingMethod: 'home', // 'home' or 'desk'
   });
 
-  const shipping = 0;
+  const rates = getShippingRates(form.wilaya);
+  const shipping = rates ? (form.shippingMethod === 'desk' ? rates.desk : rates.home) : 0;
 
   if (!items.length) {
     return (
@@ -54,6 +57,8 @@ export default function CheckoutPage() {
     startTransition(async () => {
       const result = await createOrder({
         ...form,
+        shippingCost: shipping,
+        shippingMethod: form.shippingMethod === 'desk' ? 'Stop-desk' : 'À domicile',
         items: items.map((item) => ({ productId: item.id, quantity: item.quantity, flavor: item.flavor || undefined })),
       });
 
@@ -95,6 +100,73 @@ export default function CheckoutPage() {
                 />
                 <Input label={t('commune')} value={form.commune} onChange={(value) => setForm({ ...form, commune: value })} />
               </div>
+              {rates && (
+                <div style={{ display: 'grid', gap: 10, marginTop: 4, marginBottom: 8 }}>
+                  <span style={{ fontSize: 14, color: 'var(--text-muted)', fontWeight: 700 }}>
+                    {t('deliveryMethod')}
+                  </span>
+                  <div style={{ display: 'flex', gap: 16 }}>
+                    <div 
+                      onClick={() => setForm({ ...form, shippingMethod: 'home' })}
+                      style={{ 
+                        flex: 1, 
+                        border: form.shippingMethod === 'home' ? '2px solid var(--primary)' : '1px solid var(--border)', 
+                        borderRadius: 'var(--radius-md)', 
+                        padding: '14px 16px', 
+                        cursor: 'pointer',
+                        background: form.shippingMethod === 'home' ? 'var(--bg-elevated)' : 'transparent',
+                        transition: 'all 0.2s ease',
+                        boxShadow: form.shippingMethod === 'home' ? '0 0 10px rgba(0, 240, 255, 0.15)' : 'none'
+                      }}
+                    >
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
+                        <strong style={{ color: form.shippingMethod === 'home' ? 'var(--primary)' : 'var(--text-main)', fontSize: 13 }}>
+                          {t('homeDelivery')}
+                        </strong>
+                        <span style={{ fontWeight: 800, fontSize: 14, color: 'var(--accent-silver)' }}>
+                          {formatPrice(rates.home)}
+                        </span>
+                      </div>
+                      <div style={{ fontSize: 12, color: 'var(--text-hint)' }}>
+                        {locale === 'ar' 
+                          ? `التوصيل خلال ${rates.delay} ${rates.delay === 1 ? 'يوم' : 'أيام'}` 
+                          : locale === 'fr' 
+                          ? `Livraison sous ${rates.delay} jour(s)` 
+                          : `Delivery in ${rates.delay} day(s)`}
+                      </div>
+                    </div>
+                    <div 
+                      onClick={() => setForm({ ...form, shippingMethod: 'desk' })}
+                      style={{ 
+                        flex: 1, 
+                        border: form.shippingMethod === 'desk' ? '2px solid var(--primary)' : '1px solid var(--border)', 
+                        borderRadius: 'var(--radius-md)', 
+                        padding: '14px 16px', 
+                        cursor: 'pointer',
+                        background: form.shippingMethod === 'desk' ? 'var(--bg-elevated)' : 'transparent',
+                        transition: 'all 0.2s ease',
+                        boxShadow: form.shippingMethod === 'desk' ? '0 0 10px rgba(0, 240, 255, 0.15)' : 'none'
+                      }}
+                    >
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
+                        <strong style={{ color: form.shippingMethod === 'desk' ? 'var(--primary)' : 'var(--text-main)', fontSize: 13 }}>
+                          {t('deskDelivery')}
+                        </strong>
+                        <span style={{ fontWeight: 800, fontSize: 14, color: 'var(--accent-silver)' }}>
+                          {formatPrice(rates.desk)}
+                        </span>
+                      </div>
+                      <div style={{ fontSize: 12, color: 'var(--text-hint)' }}>
+                        {locale === 'ar' 
+                          ? `التوصيل خلال ${rates.delay} ${rates.delay === 1 ? 'يوم' : 'أيام'}` 
+                          : locale === 'fr' 
+                          ? `Livraison sous ${rates.delay} jour(s)` 
+                          : `Delivery in ${rates.delay} day(s)`}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
               <Input label={t('addressDetails')} value={form.addressDetails} onChange={(value) => setForm({ ...form, addressDetails: value })} textarea />
               <button type="button" onClick={() => validateShipping() && setStep(2)} style={{ background: 'var(--primary)', color: '#080810', borderRadius: 'var(--radius-md)', fontWeight: 900 }}>{t('continue')}</button>
             </div>
@@ -119,6 +191,9 @@ export default function CheckoutPage() {
               <h2 style={{ fontSize: 22 }}>{t('reviewOrder')}</h2>
               <p style={{ color: 'var(--text-muted)' }}>{form.fullName} - {form.phone}</p>
               <p style={{ color: 'var(--text-muted)' }}>{form.wilaya}, {form.commune}, {form.addressDetails}</p>
+              <p style={{ color: 'var(--text-muted)' }}>
+                {t('deliveryMethod')}: <strong>{form.shippingMethod === 'desk' ? t('deskDelivery') : t('homeDelivery')}</strong>
+              </p>
               <div style={{ display: 'flex', gap: 'var(--space-sm)' }}>
                 <button type="button" onClick={() => setStep(2)} style={{ flex: 1, border: '1px solid var(--border)', borderRadius: 'var(--radius-md)', color: 'var(--text-main)' }}>{t('back')}</button>
                 <button type="button" disabled={isPending} onClick={submitOrder} style={{ flex: 1, background: 'linear-gradient(135deg, var(--primary), var(--secondary))', color: '#080810', borderRadius: 'var(--radius-md)', fontWeight: 900 }}>

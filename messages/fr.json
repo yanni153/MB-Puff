@@ -114,7 +114,10 @@
         "createOrderFailed": "Impossible de créer la commande.",
         "paymentDescription": "Payez après la confirmation et la livraison de votre commande.",
         "estimatedDelivery": "Livraison estimée",
-        "days": "jours"
+        "days": "jours",
+        "deliveryMethod": "Méthode de livraison",
+        "homeDelivery": "À domicile",
+        "deskDelivery": "Stop-desk (Bureau)"
     },
     "AgeGate": {
         "title": "Vérification d'Âge",

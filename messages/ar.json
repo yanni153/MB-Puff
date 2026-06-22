@@ -114,7 +114,10 @@
         "createOrderFailed": "فشل إنشاء الطلب.",
         "paymentDescription": "ادفع بعد تأكيد طلبك وتوصيله.",
         "estimatedDelivery": "التوصيل المتوقع",
-        "days": "أيام"
+        "days": "أيام",
+        "deliveryMethod": "طريقة التوصيل",
+        "homeDelivery": "توصيل للمنزل (À domicile)",
+        "deskDelivery": "استلام من مكتب الشحن (Stop-desk)"
     },
     "AgeGate": {
         "title": "التحقق من السن",
